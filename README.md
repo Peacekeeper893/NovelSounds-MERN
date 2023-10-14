@@ -1,6 +1,4 @@
-I apologize for the oversight. Here's the complete README file in Markdown format:
 
-```markdown
 # NovelSounds
 
 NovelSounds is a project that allows you to listen to your favorite audiobooks on the go!
@@ -77,7 +75,4 @@ We welcome contributions from the community to make NovelSounds even better. To 
 3. Make your changes and commit them.
 4. Submit a pull request.
 
----
-```
 
-This is the complete README file in Markdown format with all the changes you requested. You can use this as your project's README file on GitHub.
