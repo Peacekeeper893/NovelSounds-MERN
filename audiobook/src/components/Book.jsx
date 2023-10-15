@@ -6,11 +6,9 @@ import { useParams } from "react-router-dom";
 import Modal from "./Modal";
 import Navbar from "./Navbar";
 
-
-
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
-const Book = () => {
+const Book = ({ loggedIn }) => {
     const { book_name } = useParams();
 
     // book_name = book_name.replaceAll('%20', ' ');
@@ -40,7 +38,6 @@ const Book = () => {
         GetBook();
     }, []);
 
-
     const sendData = (data) => {
         setChapter_number((prev) => data);
     };
@@ -56,14 +53,21 @@ const Book = () => {
                     book={book}
                 />
             ) : (
-                <Fragment>
-                    <Navbar />
+                <Fragment className="h-full">
                     <Hero book={book} />
-                    <Navigation
-                        sendData={sendData}
-                        book={book}
-                        chapter_number={chapter_number}
-                    />
+                    <hr />
+
+                    {!loggedIn ? (
+                        <div className="text-center py-16 h-full dark:bg-d-bg-200 dark:text-white">
+                            Please Log-In to listen to this audiobook
+                        </div>
+                    ) : (
+                        <Navigation
+                            sendData={sendData}
+                            book={book}
+                            chapter_number={chapter_number}
+                        />
+                    )}
                 </Fragment>
             )}
 

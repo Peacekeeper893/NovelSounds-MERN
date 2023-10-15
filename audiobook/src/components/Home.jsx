@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ShortcutDisplay from "./ShortcutDisplay";
+
+
+
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
-const Home = () => {
+const Home = ({loggedIn}) => {
     const [books, setBooks] = useState([]);
     const [hpbooks, setHpbooks] = useState([]);
     const [asoifbooks, setAsoifbooks] = useState([]);
@@ -19,6 +22,8 @@ const Home = () => {
         GetHgbooks();
         GetAsoifbooks();
     }, []);
+
+
 
     const GetBooks = () => {
         fetch(API_BASE + "/books")
@@ -60,7 +65,7 @@ const Home = () => {
 
     return (
         <Fragment>
-            <Navbar />
+            <Navbar loggedIn={loggedIn } />
             <div className="min-h-screen bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex w-screen max-w-full p-4">
                 <div className=" md:flex-[75]  ">
                     <div className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600" id="hp">

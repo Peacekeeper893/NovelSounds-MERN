@@ -4,7 +4,7 @@ import ChapterItem from "./ChapterItem";
 
 const ChapterList = ({ sendData , chapters , chapter_number ,chapterdetails}) => {
     return (
-        <div className="dark:bg-d-bg-200 pt-4">
+        <div className="dark:bg-d-bg-200 py-4">
             {chapters.map((chapter) => (
                 <ChapterItem
                     num={chapter.chapter_number}
