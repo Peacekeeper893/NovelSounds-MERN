@@ -46,17 +46,17 @@ const Navbar = ({ loggedIn }) => {
     };
     return (
         <Fragment>
-            <div className="  h-[12vh] flex justify-between md:px-7 dark:bg-d-bg-100 dark:text-white px-4">
+            <div className="  h-[12vh] flex justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
                 <div className="self-center md:text-4xl">
                     <NovelSounds />
                 </div>
 
-                <div className="flex gap-8">
+                <div className="flex md:gap-8 gap-3">
                     <div className="self-center ">
                         <Switcher />
                     </div>
                     {!loggedIn && (
-                        <div className="self-center ">
+                        <div className="self-center text-md md:text-lg">
                             <Link to={"/login"}>Login / SignUp</Link>
                         </div>
                     )}
@@ -87,7 +87,7 @@ const Navbar = ({ loggedIn }) => {
                 </div>
 
                 <div>
-                    {loggedIn && <p className="px-4 font-eczar text-lg">Hi {displayName}</p>}
+                    {loggedIn && <p className="px-4 font-eczar md:text-lg">Hi {displayName}</p>}
                 </div>
             </div>
         </Fragment>

@@ -37,7 +37,7 @@ function App() {
         <div className="App ">
             <Routes>
                 <Route exact path="/"  element={<Home loggedIn={loggedIn}/>} />
-                <Route path="/book/:book_name" element={<Fragment><Navbar loggedIn={loggedIn}/> <Book loggedIn={loggedIn} /></Fragment>} />
+                <Route path="/book/:book_name" element={<Fragment><Book loggedIn={loggedIn} /></Fragment>} />
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/Signup" element={<Signup/>}/>
             </Routes>

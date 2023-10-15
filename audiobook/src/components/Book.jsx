@@ -54,6 +54,8 @@ const Book = ({ loggedIn }) => {
                 />
             ) : (
                 <Fragment className="h-full">
+                    <Navbar loggedIn={loggedIn} />
+
                     <Hero book={book} />
                     <hr />
 
