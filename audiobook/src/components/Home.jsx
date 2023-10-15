@@ -66,7 +66,7 @@ const Home = ({loggedIn}) => {
     return (
         <Fragment>
             <Navbar loggedIn={loggedIn } />
-            <div className="min-h-screen bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex w-screen max-w-full p-8">
+            <div className="min-h-screen bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex w-screen max-w-full md:p-8 p-2">
                 <div className=" md:flex-[75]  ">
                     <div className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600" id="hp">
                         Harry Potter Books
@@ -113,7 +113,7 @@ const Home = ({loggedIn}) => {
                 </div>
             </div>
 
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full p-8">
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
                 <div className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600" id="asoif">
                     A song of Ice and Fire Books
                 </div>
@@ -137,7 +137,7 @@ const Home = ({loggedIn}) => {
                 </div>
             </div>
 
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full p-8">
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
                 <div className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600" id="hunger-games">
                     Hunger Games Books
                 </div>
