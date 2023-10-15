@@ -19,7 +19,7 @@ NovelSounds is a platform for audiobook enthusiasts to listen to their favorite 
 
 ## Demo
 
-You can try out NovelSounds by visiting the [live demo](https://novelsounds.netlify.app/).
+You can try out NovelSounds by visiting the [live demo](https://novelsounds.netlify.app/). might change
 
 ## Technologies Used
 
