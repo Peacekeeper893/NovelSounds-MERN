@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ShortcutDisplay from "./ShortcutDisplay";
+import SearchModal from "./SearchModal";
 
 
 
@@ -15,6 +16,8 @@ const Home = ({loggedIn}) => {
     const [asoifbooks, setAsoifbooks] = useState([]);
     const [hgbooks, setHgbooks] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Initialize loading state to true
+    const [searchmodal, setSearchmodal] = useState(false)
+    const [query, setQuery] = useState("")
 
     useEffect(() => {
         GetBooks();
@@ -63,6 +66,15 @@ const Home = ({loggedIn}) => {
             .catch((err) => console.error(err));
     };
 
+    const handleSearch = () => {
+        setSearchmodal(true)
+    }
+
+    const handleBlur = () => {
+        setSearchmodal(false)
+    }
+
+
     return (
         <Fragment>
             <Navbar loggedIn={loggedIn } />
@@ -91,14 +103,20 @@ const Home = ({loggedIn}) => {
                     </div>
                 </div>
                 <div className="md:flex flex-col flex-[25] hidden">
-                    <div className="  text-black my-5">
+                    <div className="  text-black my-5 dark:text-d-primary-400">
                         <input
                             type="search"
                             name="searchq"
                             id="searchq"
                             placeholder="Search"
                             className="p-2 border-gray-300 border-[4px] w-full dark:bg-d-bg-200"
+                            onFocus={handleSearch}
+                            onBlur={handleBlur}
+                            value={query}
+                            onChange={(e) => {setQuery(() => (e.target.value))}}
+                            
                         />
+                        {searchmodal && <SearchModal query={query} />}
                     </div>
 
                     <div className="font-semibold text-xl">Recent Posts</div>

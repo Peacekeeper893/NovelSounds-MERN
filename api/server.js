@@ -41,6 +41,15 @@ app.get('/book/:name', async (req, res) => {
     
 })
 
+app.get('/search/:q', async (req, res) => {
+    const query = await Books.find({name : {
+        '$regex': req.params.q, 
+        '$options': 'i'
+    }
+    }).select(['name' ,'author']);
+    res.json(query)
+})
+
 
 // Start your Express JS application
 app.listen(3001, () => {
