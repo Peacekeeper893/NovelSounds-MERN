@@ -1,6 +1,7 @@
 import React, { Fragment , useState } from "react";
 import ChapterList from "./ChapterList";
 import AboutBook from "./AboutBook";
+import Comments from "./Comments";
 
 const Navigation = ({sendData , book , chapter_number}) => {
 
@@ -11,6 +12,9 @@ const Navigation = ({sendData , book , chapter_number}) => {
 
     const handleAboutClick = () => {
         setOpen((prev) => "book")
+    }
+    const handleCommentsClick = () => {
+        setOpen((prev) => "comments")
     }
 
 
@@ -25,13 +29,19 @@ const Navigation = ({sendData , book , chapter_number}) => {
                 {open === "book" && <div className=" p-4 rounded-lg font-semibold font-serif underline underline-offset-4" onClick={handleAboutClick}>ABOUT</div>}
                 {open !== "book" && <div className=" p-4 rounded-lg font-semibold font-serif  cursor-pointer" onClick={handleAboutClick}>ABOUT</div>}
 
+                {open === "comments" && <div className=" p-4 rounded-lg font-semibold font-serif underline underline-offset-4" onClick={handleCommentsClick}>COMMENTS</div>}
+                {open !== "comments" && <div className=" p-4 rounded-lg font-semibold font-serif  cursor-pointer" onClick={handleCommentsClick}>COMMENTS</div>}
+
 
                 
             </div>
 
+            <hr />
+
 
             {open === "chapters" && <ChapterList sendData={sendData} chapters={book[0]["chapters"]} chapter_number={chapter_number} chapterdetails={ book[0]["chapterdetails"]} />}
             {open === "book" && <AboutBook about={book[0]["about"] } />}
+            {open === "comments" && <Comments name={book[0]["name"] } />}
         </Fragment>
     );
 };
