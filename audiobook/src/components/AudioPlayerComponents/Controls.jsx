@@ -34,7 +34,7 @@ const Controls = ({
 
     const playAnimationRef = useRef();
 
-    const imgurl = book[0]["bookimg"]
+    const imgurl = book[0]["bookimg"];
 
     useEffect(() => {
         if (audioRef) {
@@ -61,17 +61,18 @@ const Controls = ({
         };
 
         const handlePaused = () => {
-            setIsPlaying((prev) => (false));
-        }
+            setIsPlaying((prev) => false);
+        };
         const handlePlay = () => {
-            setIsPlaying((prev) => (true));
-        }
+            setIsPlaying((prev) => true);
+        };
 
         // Add event listeners to the audio element
         audioElement.addEventListener("error", handleError);
         audioElement.addEventListener("stalled", handleStalled);
         audioElement.addEventListener("pause", handlePaused);
         audioElement.addEventListener("play", handlePlay);
+        audioElement.addEventListener("ended", handleEnded);
 
         // Remove event listeners when the component unmounts
         return () => {
@@ -79,6 +80,7 @@ const Controls = ({
             audioElement.removeEventListener("stalled", handleStalled);
             audioElement.removeEventListener("pause", handlePaused);
             audioElement.removeEventListener("play", handlePlay);
+            audioElement.removeEventListener("ended", handleEnded);
         };
     }, []);
 
@@ -133,12 +135,22 @@ const Controls = ({
         sendData(chapter_number - 1);
     };
 
+    const handleEnded = () => {
+        // setTimeout(handlenext, 1000);
+    };
+
+    navigator.mediaSession.setActionHandler("previoustrack", function () {
+        handleprev();
+    });
+
+    navigator.mediaSession.setActionHandler("nexttrack", function () {
+        handlenext();
+    });
+
     return (
         <div className="controls-wrapper">
             <div className="controls md:flex justify-between px-6">
-                <div className="md:flex-[15%] hidden md:flex">
-
-                </div>
+                <div className="md:flex-[15%] hidden md:flex"></div>
 
                 <div className="md:flex-[70%] self-center text-center">
                     <button className="px-4" onClick={handleprev}>
@@ -160,13 +172,16 @@ const Controls = ({
                 </div>
 
                 <div className="volume flex-[15%] flex gap-2  flex-nowrap float-right">
-                    <button onClick={() => setMuteVolume((prev) => !prev)} className="hidden md:block">
+                    <button
+                        onClick={() => setMuteVolume((prev) => !prev)}
+                        className="hidden md:block"
+                    >
                         {muteVolume || volumeval < 5 ? (
-                            <IoMdVolumeOff  />
+                            <IoMdVolumeOff />
                         ) : volumeval < 40 ? (
-                            <IoMdVolumeLow  />
+                            <IoMdVolumeLow />
                         ) : (
-                            <IoMdVolumeHigh  />
+                            <IoMdVolumeHigh />
                         )}
                     </button>
 
@@ -186,7 +201,10 @@ const Controls = ({
                     </div>
 
                     <div className="md:self-center pl-4 ">
-                        <BsArrowsFullscreen onClick={openModalHandler} className={`${openModal ? "text-2xl" : ""}`}/>
+                        <BsArrowsFullscreen
+                            onClick={openModalHandler}
+                            className={`${openModal ? "text-2xl" : ""}`}
+                        />
                     </div>
                 </div>
             </div>

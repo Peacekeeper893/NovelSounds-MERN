@@ -18,6 +18,8 @@ const Audioplayer = ({ currentTrack ,openModalHandler ,sendData ,chapter_number,
                 audioRef={audioRef}
                 setDuration={setDuration}
                 progressBarRef={progressBarRef}
+                book={book}
+                chapter_number = {chapter_number}
             />
             <Controls
                 {...{

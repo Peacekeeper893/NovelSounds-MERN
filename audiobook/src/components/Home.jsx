@@ -71,7 +71,9 @@ const Home = ({loggedIn}) => {
     }
 
     const handleBlur = () => {
-        setSearchmodal(false)
+
+        setTimeout(() => setSearchmodal(false) , 250)
+
     }
 
 
