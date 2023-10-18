@@ -19,26 +19,30 @@ NovelSounds is a platform for audiobook enthusiasts to listen to their favorite 
 
 ## Demo
 
-You can try out NovelSounds by visiting the [live demo](https://novelsounds.netlify.app/). might change
+You can try out NovelSounds by visiting the [live demo](https://novelsounds.netlify.app/)
 
 ## Technologies Used
 
 NovelSounds is built using the following technologies and tools:
 
-- React
-- Tailwind CSS
-- MongoDB
+- React JS
 - Express.js
 - Node.js
-- Google Cloud
+- MongoDB
+- Tailwind CSS
+- Google Cloud Platforms
+- Firebase (for authentication purposes)
 
 ## Features
 
-NovelSounds offers the following key features:
+NovelSounds offers a wide range of features:
 
-- Easy access to a vast library of audiobooks.
-- User-friendly interface for browsing and playing audiobooks.
-- Bookmark and resume functionality to pick up where you left off.
+- **Audiobook Library:** Access a vast collection of audiobooks across various genres.
+- **User-Friendly Interface:** Seamlessly browse, search, select, and listen to audiobooks with an intuitive yet simplistic interface.
+- **Bookmark and Resume:** Never lose your place – use bookmarking to easily continue listening where you left off.
+- **Discussion Forum:** Engage in thoughtful conversations about the audiobooks you're listening to, share insights, and discover new literary gems.
+- **Community Interaction:** Connect with fellow audiobook enthusiasts, expand your reading list, and broaden your literary horizons.
+- **User Profiles:** Create and personalize your user profile to keep track of your literary adventures.
 
 ## Installation
 
@@ -46,10 +50,10 @@ To get NovelSounds up and running on your local machine, follow these steps:
 
 ```bash
 # Clone the NovelSounds repository
-git clone https://github.com/yourusername/NovelSounds.git
+git clone https://github.com/Peacekeeper893/NovelSounds-MERN.git
 
 # Change to the project directory
-cd NovelSounds
+cd audiobook
 
 # Install the necessary dependencies
 npm install
@@ -64,7 +68,8 @@ npm start
 2. Browse the audiobook library.
 3. Select an audiobook to start listening.
 4. Use the bookmark feature to save your progress.
-5. Enjoy your audiobook on the go!
+5. Connect with like-minded audiobook enthusiasts, share your thoughts, and discover new literary treasures.
+6. Enjoy your audiobook on the go!
 
 ## Contributing
 

@@ -26,7 +26,7 @@ const SearchModal = ({ query }) => {
     }, [query]);
 
     return (
-        <div className="h-fit bg-white dark:bg-d-bg-200 dark:text-d-primary-300 absolute w-[25%] min-h-[60px]  -ms-2 text-center mt-2 pt-3 py-3 px-1 border-gray-300 border-[3px] grid rounded-xl">
+        <div className="h-fit bg-white dark:bg-d-bg-200 dark:text-d-primary-300 absolute md:w-[25%] min-h-[60px]  md:-ms-2 text-center mt-2 pt-3 md:py-3 md:px-1 border-gray-300 border-[3px] grid rounded-xl w-[88%] ">
             {res.length === 0 || isLoading === true ? (
                 <div className="self-center">No results available</div>
             ) : (

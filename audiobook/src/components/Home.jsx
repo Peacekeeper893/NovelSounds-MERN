@@ -5,19 +5,18 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ShortcutDisplay from "./ShortcutDisplay";
 import SearchModal from "./SearchModal";
-
-
+import { IoSearch } from "react-icons/io5";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
-const Home = ({loggedIn}) => {
+const Home = ({ loggedIn }) => {
     const [books, setBooks] = useState([]);
     const [hpbooks, setHpbooks] = useState([]);
     const [asoifbooks, setAsoifbooks] = useState([]);
     const [hgbooks, setHgbooks] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Initialize loading state to true
-    const [searchmodal, setSearchmodal] = useState(false)
-    const [query, setQuery] = useState("")
+    const [searchmodal, setSearchmodal] = useState(false);
+    const [query, setQuery] = useState("");
 
     useEffect(() => {
         GetBooks();
@@ -25,8 +24,6 @@ const Home = ({loggedIn}) => {
         GetHgbooks();
         GetAsoifbooks();
     }, []);
-
-
 
     const GetBooks = () => {
         fetch(API_BASE + "/books")
@@ -67,22 +64,44 @@ const Home = ({loggedIn}) => {
     };
 
     const handleSearch = () => {
-        setSearchmodal(true)
-    }
+        setSearchmodal(true);
+    };
 
     const handleBlur = () => {
-
-        setTimeout(() => setSearchmodal(false) , 250)
-
-    }
-
+        setTimeout(() => setSearchmodal(false), 250);
+    };
 
     return (
         <Fragment>
-            <Navbar loggedIn={loggedIn } />
+            <Navbar loggedIn={loggedIn} />
+            {/* Search bar for mobile displays */}
+
+            <div className=" md:hidden text-black  dark:text-d-primary-400 bg-zinc-50 dark:bg-d-bg-100 pt-5 pb-3 px-6">
+                <div className="flex ">
+                    <input
+                        type="search"
+                        name="searchq"
+                        id="searchq"
+                        placeholder={`Search an Audiobook... `}
+                        className="p-2 border-gray-300 border-[4px] w-full dark:bg-d-bg-200 rounded-xl border-r-0 rounded-r-none"
+                        onFocus={handleSearch}
+                        onBlur={handleBlur}
+                        value={query}
+                        onChange={(e) => {
+                            setQuery(() => e.target.value);
+                        }}
+                    />
+                    <div className="p-2 pt-3 border-gray-300 border-[4px] border-l-0 dark:bg-d-bg-200 rounded-xl rounded-l-none -ml-0.5"><IoSearch /></div>
+                </div>
+                {searchmodal && <SearchModal query={query} />}
+            </div>
+
             <div className="min-h-screen bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex w-screen max-w-full md:p-8 p-2">
                 <div className=" md:flex-[75]  ">
-                    <div className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600" id="hp">
+                    <div
+                        className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
+                        id="hp"
+                    >
                         Harry Potter Books
                     </div>
 
@@ -115,8 +134,9 @@ const Home = ({loggedIn}) => {
                             onFocus={handleSearch}
                             onBlur={handleBlur}
                             value={query}
-                            onChange={(e) => {setQuery(() => (e.target.value))}}
-                            
+                            onChange={(e) => {
+                                setQuery(() => e.target.value);
+                            }}
                         />
                         {searchmodal && <SearchModal query={query} />}
                     </div>
@@ -134,7 +154,10 @@ const Home = ({loggedIn}) => {
             </div>
 
             <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
-                <div className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600" id="asoif">
+                <div
+                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
+                    id="asoif"
+                >
                     A song of Ice and Fire Books
                 </div>
 
@@ -158,7 +181,10 @@ const Home = ({loggedIn}) => {
             </div>
 
             <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
-                <div className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600" id="hunger-games">
+                <div
+                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
+                    id="hunger-games"
+                >
                     Hunger Games Books
                 </div>
 
