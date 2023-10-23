@@ -76,8 +76,8 @@ const Home = ({ loggedIn }) => {
             <Navbar loggedIn={loggedIn} />
             {/* Search bar for mobile displays */}
 
-            <div className=" md:hidden text-black  dark:text-d-primary-400 bg-zinc-50 dark:bg-d-bg-100 pt-5 pb-3 px-6">
-                <div className="flex ">
+            <div className=" md:hidden text-black  dark:text-d-primary-400 bg-zinc-50 dark:bg-d-bg-100 pt-5 pb-3 px-5">
+                <div className="flex w-full">
                     <input
                         type="search"
                         name="searchq"

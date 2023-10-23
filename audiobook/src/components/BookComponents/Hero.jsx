@@ -3,8 +3,8 @@ import React, { Fragment } from "react";
 const Hero = ({book}) => {
     return (
         <Fragment>
-            <div className="p-8 flex justify-start md:gap-9 dark:bg-d-bg-200 dark:text-white gap-6">
-                <div className="md:h-[320px] md:w-[250px] md:min-w-[250px]  h-[180px] w-[140px]">
+            <div className="md:p-8 flex justify-start md:gap-9 dark:bg-d-bg-200 dark:text-white gap-4 p-4">
+                <div className="md:h-[320px] md:w-[250px] md:min-w-[250px]  h-[190px] w-[190px]">
                     <img
                         src={book[0]["bookimg"]}
                         alt=""

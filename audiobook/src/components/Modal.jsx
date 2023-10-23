@@ -8,12 +8,24 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
         backgroundImage: `url(${book[0]["bookimg"]})`,
 
         opacity: 0.75,
-        filter: "contrast(1.40) saturate(120%) brightness(20%)",
+        filter: "contrast(1.80) saturate(90%) brightness(40%)",
     };
     const mainstyle = {
         opacity: 1,
         filter: "contrast(1.0) saturate(100%) brightness(100%)",
     };
+
+    const variants = {
+        hidden: { x: '-100%' }, // Offscreen to the left
+        visible: { x: 0 },      // Slide in from the left to the center
+      };
+    
+      // Define the transition settings
+      const transition = {
+        type: 'spring',
+        damping: 20,
+        stiffness: 100,
+      };
     // console.log(backdrop)
     return (
         <Fragment>
@@ -29,20 +41,20 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
                 </button>
             </div>
 
+
+
             <motion.div
-                  initial={{ scale: 0.5 }}
-                  animate={{ rotate: 360, scale: 1 }}
-                  transition={{
-                      type: "tween",
-                    stiffness: 260,
-                    damping: 20
-                }}
+
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+                transition={transition}
                 
                 className="block md:h-[60%]  absolute md:bottom-20 h-[50%] bottom-[30vh] left-[20%] right-[20%] w-[60%] md:w-[20%] md:left-[4%]"
             >
                 <img
                     src={book[0]["bookimg"]}
-                    className="h-[100%] absolute left-[5%] right-[20%] w-[100%]  md:left-[4%]"
+                    className="h-[100%] bottom-12 md:bottom-3  absolute left-[3%]  w-[110%]  md:left-[4%]"
                     
                     style={mainstyle}
                 />
