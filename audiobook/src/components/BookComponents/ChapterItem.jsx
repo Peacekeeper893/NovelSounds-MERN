@@ -60,18 +60,24 @@ import UseAnimations from 'react-useanimations';
 import Activity from 'react-useanimations/lib/activity';
 // import 'react-useanimations/lib/index.css';
 
-const ChapterItem = ({ chapterdetails, num, title, description, audio, chapter_number, setIsPlaying }) => {
-  const [isPlaying, setPlaying] = useState(false);
+const ChapterItem = ({ num,
+      title,
+      description,
+      sendData,
+      chapter_number,
+      chapterdetails, }) => {
   const { ref, inView } = useInView();
+    const [isPlaying, setIsPlaying] = useState(false);
 
-  useEffect(() => {
-    if (chapter_number !== num) setPlaying(false);
-    else setPlaying(true);
-  }, [chapter_number]);
+    const onClickHandler = () => {
+        sendData(num);
+        setIsPlaying(true);
+    };
 
-  const onClickHandler = () => {
-    setIsPlaying(num);
-  };
+    useEffect(() => {
+        if (chapter_number !== num) setIsPlaying(false);
+        else setIsPlaying(true);
+    }, [chapter_number]);
 
   return (
     <Fragment>
