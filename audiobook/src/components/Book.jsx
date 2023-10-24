@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { div, useEffect, useState } from "react";
 import ChapterPlayer from "./ChapterPlayer";
 import Hero from "./BookComponents/Hero";
 import Navigation from "./BookComponents/Navigation";
@@ -6,6 +6,9 @@ import { useParams } from "react-router-dom";
 import Modal from "./Modal";
 import Navbar from "./Navbar";
 
+
+import { auth } from "../firebase";
+import LoadingScreen from "./LoadingScreen";
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
 const Book = ({ loggedIn }) => {
@@ -16,6 +19,7 @@ const Book = ({ loggedIn }) => {
     const [book, setbook] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Initialize loading state to true
     const [openModal, setOpenModal] = useState(false);
+    const [user, setUser] = useState({})
 
     const openModalHandler = () => {
         setOpenModal((prev) => !prev);
@@ -35,6 +39,14 @@ const Book = ({ loggedIn }) => {
     };
 
     useEffect(() => {
+
+
+        setTimeout(() => {
+            
+        const user = auth.currentUser;
+        setUser(user);
+        }, 1000);
+
         GetBook();
     }, []);
 
@@ -45,7 +57,7 @@ const Book = ({ loggedIn }) => {
     return (
         <div>
             {isLoading ? (
-                <p>Loading...</p>
+                <LoadingScreen/>
             ) : openModal ? (
                 <Modal
                     closeModalHandler={closeModalHandler}
@@ -53,10 +65,10 @@ const Book = ({ loggedIn }) => {
                     book={book}
                 />
             ) : (
-                <Fragment className="h-full">
+                <div className="min-h-screen dark:bg-d-bg-200 dark:text-white">
                     <Navbar loggedIn={loggedIn} />
 
-                    <Hero book={book} />
+                    <Hero book={book} user={user} />
                     <hr />
 
                     {!loggedIn ? (
@@ -70,7 +82,7 @@ const Book = ({ loggedIn }) => {
                             chapter_number={chapter_number}
                         />
                     )}
-                </Fragment>
+                </div>
             )}
 
             {chapter_number !== "0" && (

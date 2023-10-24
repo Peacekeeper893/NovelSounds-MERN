@@ -20,6 +20,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { getAuth, updateProfile } from "firebase/auth";
 import { auth } from '../firebase';
+import { getFirestore, collection, addDoc,setDoc ,doc} from "firebase/firestore";
+import {db} from '../firebase';
 
 function Copyright(props) {
     return (
@@ -73,6 +75,23 @@ export default function Signup() {
               });
 
             console.log(user);
+
+            const newData = {
+                name: name,
+                email: email,
+                photoURL: "https://png.pngtree.com/png-clipart/20210606/original/pngtree-gray-avatar-placeholder-png-image_6398267.jpg"
+            }
+
+            // Set a custom document ID when adding data using doc() and setDoc()
+            const userRef = doc(db, "users", user.uid);
+            setDoc(userRef, newData)
+            .then(() => {
+                console.log("Data added with custom document ID: ", user.uid);
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+            });
+
             navigate("/login")
             // ...
         })

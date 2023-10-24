@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import ShortcutDisplay from "./ShortcutDisplay";
 import SearchModal from "./SearchModal";
 import { IoSearch } from "react-icons/io5";
+import LoadingScreen from "./LoadingScreen";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -91,7 +92,9 @@ const Home = ({ loggedIn }) => {
                             setQuery(() => e.target.value);
                         }}
                     />
-                    <div className="p-2 pt-3 border-gray-300 border-[4px] border-l-0 dark:bg-d-bg-200 rounded-xl rounded-l-none -ml-0.5"><IoSearch /></div>
+                    <div className="p-2 pt-3 border-gray-300 border-[4px] border-l-0 dark:bg-d-bg-200 rounded-xl rounded-l-none -ml-0.5">
+                        <IoSearch />
+                    </div>
                 </div>
                 {searchmodal && <SearchModal query={query} />}
             </div>
@@ -107,7 +110,14 @@ const Home = ({ loggedIn }) => {
 
                     <div className="flex flex-wrap gap-8 p-4">
                         {isLoading === true ? (
-                            <p> Loading.. Please Wait</p>
+                            Array.from({ length: 5 }).map((_, index) => (
+                                <div
+                                    key={index}
+                                    className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
+                                >
+                                    <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
+                                </div>
+                            ))
                         ) : (
                             <Fragment>
                                 {hpbooks.map((book) => (
@@ -129,8 +139,8 @@ const Home = ({ loggedIn }) => {
                             type="search"
                             name="searchq"
                             id="searchq"
-                            placeholder="Search"
-                            className="p-2 border-gray-300 border-[4px] w-full dark:bg-d-bg-200"
+                            placeholder="Search for an Audiobook..."
+                            className="p-2 border-gray-300 border-[4px] w-full dark:bg-d-bg-200 rounded-lg"
                             onFocus={handleSearch}
                             onBlur={handleBlur}
                             value={query}
@@ -163,7 +173,14 @@ const Home = ({ loggedIn }) => {
 
                 <div className="flex flex-wrap md:gap-16 gap-8 p-4">
                     {isLoading === true ? (
-                        <p> Loading.. Please Wait</p>
+                        Array.from({ length: 5 }).map((_, index) => (
+                            <div
+                                key={index}
+                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
+                            >
+                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
+                            </div>
+                        ))
                     ) : (
                         <Fragment>
                             {asoifbooks.map((book) => (
@@ -190,7 +207,14 @@ const Home = ({ loggedIn }) => {
 
                 <div className="flex flex-wrap md:gap-16 p-4 gap-8">
                     {isLoading === true ? (
-                        <p> Loading.. Please Wait</p>
+                        Array.from({ length: 5 }).map((_, index) => (
+                            <div
+                                key={index}
+                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
+                            >
+                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
+                            </div>
+                        ))
                     ) : (
                         <Fragment>
                             {hgbooks.map((book) => (

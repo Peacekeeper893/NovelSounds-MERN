@@ -46,7 +46,7 @@ const Navbar = ({ loggedIn }) => {
     };
     return (
         <Fragment>
-            <div className="  h-[12vh] flex justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
+            <div className="  md:h-[14vh] min-h-[11vh] flex justify-between md:px-7 dark:bg-d-bg-100 dark:text-white pl-2 pr-1">
                 <div className="self-center md:text-4xl">
                     <NovelSounds />
                 </div>
@@ -56,8 +56,8 @@ const Navbar = ({ loggedIn }) => {
                         <Switcher />
                     </div>
                     {!loggedIn && (
-                        <div className="self-center text-md md:text-lg">
-                            <Link to={"/login"}>Login / SignUp</Link>
+                        <div className="self-center text-md md:text-lg dark:bg-d-bg-300 md:px-5 md:py-2 px-3 py-2 rounded-xl hover:scale-105 bg-d-bg-500 text-white">
+                            <Link to={"/login"}>Login</Link>
                         </div>
                     )}
                     {loggedIn && (
