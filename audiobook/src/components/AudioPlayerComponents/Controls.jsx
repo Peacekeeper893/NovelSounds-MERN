@@ -9,7 +9,7 @@ import {
 } from "react-icons/io5";
 
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from "react-icons/io";
-import { BsArrowsFullscreen } from "react-icons/bs";
+import { BsArrowsFullscreen, BsGearFill } from "react-icons/bs";
 import UseAnimations from "react-useanimations";
 
 import maximizeMinimize from "react-useanimations/lib/maximizeMinimize";
@@ -147,12 +147,15 @@ const Controls = ({
         handlenext();
     });
 
+
+
     return (
         <div className="controls-wrapper">
             <div className={`controls md:flex justify-between px-6 ${openModal && "text-3xl"}`}>
-                <div className="md:flex-[15%] hidden md:flex pb-2">
+                <div className="md:flex-[15%] hidden md:flex  self-center">
+
                     <select
-                        className={`bg-transparent text-black  block ${openModal ? "md:hidden" : "md:block"} dark:placeholder-opacity-50 dark:ring-1 dark:ring-black font-semibold font-sans rounded-lg pl-2 py-1 w-[40%] md:ml-8`}
+                        className={`bg-transparent text-black  block ${openModal ? "md:hidden" : "md:block"} dark:placeholder-opacity-50 dark:ring-1 dark:ring-black ring-1 ring-gray-800 font-semibold font-sans rounded-lg pl-2  w-[42%] md:ml-8`}
                         onChange={(e) => {
                             audioRef.current.playbackRate = e.target.value;
                         }}
@@ -167,7 +170,8 @@ const Controls = ({
                         <option value="1.5">1.5x</option>
                         <option value="1.75">1.75x</option>
                         <option value="2">2x</option>
-                    </select>
+                        </select>
+   
                 </div>
 
                 <div className="md:flex-[70%] self-center text-center pl-2">
@@ -218,9 +222,9 @@ const Controls = ({
                         />
                     </div>
 
-                    <div className="md:self-center pl-3 absolute left-0 bottom-[58px] md:hidden ">
+                    <div className="md:self-center pl-3 absolute left-0 bottom-[56px] md:hidden ">
                     <select
-                        className={`bg-transparent text-black text-md block ${openModal ? "md:hidden" : "md:block"}   font-sans rounded-lg  py-1 w-[80%] bottom-4`}
+                        className={`bg-transparent text-black text-md block ${openModal ? "md:hidden" : "md:block"}   font-sans rounded-lg  py-1 w-[80%] bottom-5  ${openModal ? "text-xl " : "text-sm"}   `}
                         onChange={(e) => {
                             audioRef.current.playbackRate = e.target.value;
                         }}
