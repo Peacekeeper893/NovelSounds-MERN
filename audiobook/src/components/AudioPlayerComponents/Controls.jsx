@@ -8,13 +8,13 @@ import {
     IoPauseSharp,
 } from "react-icons/io5";
 
+import { TbRewindBackward10  , TbRewindForward10} from "react-icons/tb";
+
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from "react-icons/io";
 import { BsArrowsFullscreen, BsGearFill } from "react-icons/bs";
 import UseAnimations from "react-useanimations";
 
-import maximizeMinimize from "react-useanimations/lib/maximizeMinimize";
 
-import { GrForwardTen, GrBackTen } from "react-icons/gr";
 
 const Controls = ({
     audioRef,
@@ -73,6 +73,7 @@ const Controls = ({
         audioElement.addEventListener("pause", handlePaused);
         audioElement.addEventListener("play", handlePlay);
         audioElement.addEventListener("ended", handleEnded);
+        
 
         // Remove event listeners when the component unmounts
         return () => {
@@ -84,9 +85,52 @@ const Controls = ({
         };
     }, []);
 
+
     const togglePlayPause = () => {
         setIsPlaying((prev) => !prev);
     };
+    const handlenext = () => {
+        sendData(chapter_number + 1);
+    };
+    const handleprev = () => {
+        sendData(chapter_number - 1);
+    };
+
+    const handleback10 = () => {
+        audioRef.current.currentTime -= 10;
+    };
+    const handleforward10 = () => {
+        audioRef.current.currentTime += 10;
+    };
+
+    useEffect(() => {
+        const handleSpacebarPress = (event) => {
+            switch (event.code) {
+                case 'Space':
+                    togglePlayPause();
+                    break;
+                case 'ArrowRight':
+                    // Handle right arrow key press
+                    handleforward10();
+                    break;
+                case 'ArrowLeft':
+                    // Handle left arrow key press
+                    handleback10();
+                    break;
+                default:
+                    break;
+            }
+        };
+    
+        // Add event listener for the 'keydown' event
+        document.addEventListener('keydown', handleSpacebarPress);
+        
+    
+        // Remove event listener when the component unmounts
+        return () => {
+            document.removeEventListener('keydown', handleSpacebarPress);
+        };
+    }, [togglePlayPause]);
 
     const repeat = useCallback(() => {
         let currentTime;
@@ -121,22 +165,12 @@ const Controls = ({
         playAnimationRef.current = requestAnimationFrame(repeat);
     }, [isPlaying, audioRef, repeat]);
 
-    const handleback10 = () => {
-        audioRef.current.currentTime -= 10;
-    };
-    const handleforward10 = () => {
-        audioRef.current.currentTime += 10;
-    };
 
-    const handlenext = () => {
-        sendData(chapter_number + 1);
-    };
-    const handleprev = () => {
-        sendData(chapter_number - 1);
-    };
+
 
     const handleEnded = () => {
-        // setTimeout(handlenext, 1000);
+        // setTimeout(() => {   }, 2000);
+        // handlenext();
     };
 
     navigator.mediaSession.setActionHandler("previoustrack", function () {
@@ -147,6 +181,8 @@ const Controls = ({
         handlenext();
     });
 
+
+    
 
 
     return (
@@ -179,14 +215,17 @@ const Controls = ({
                         <IoPlaySkipBackSharp />
                     </button>
                     <button className="px-2" onClick={handleback10}>
-                        <GrBackTen />
+                    <TbRewindBackward10/>
                     </button>
 
                     <button onClick={togglePlayPause} className="px-2">
                         {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
                     </button>
                     <button className="px-2 " onClick={handleforward10}>
-                        <GrForwardTen />
+                        
+                    
+                    <TbRewindForward10/>
+                        
                     </button>
                     <button className="px-2" onClick={handlenext}>
                         <IoPlaySkipForwardSharp />

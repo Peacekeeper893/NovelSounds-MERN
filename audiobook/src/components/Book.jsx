@@ -52,6 +52,13 @@ const Book = ({ loggedIn }) => {
 
     const sendData = (data) => {
         setChapter_number((prev) => data);
+        // save this data to local storage
+        // Get the current URL
+        var currentURL = window.location.href;
+
+        // Store data in local storage with the URL as the key
+        localStorage.setItem(currentURL, data);
+
     };
 
     return (
@@ -69,7 +76,6 @@ const Book = ({ loggedIn }) => {
                     <Navbar loggedIn={loggedIn} />
 
                     <Hero book={book} user={user} />
-                    <hr />
 
                     {!loggedIn ? (
                         <div className="text-center py-16 h-full dark:bg-d-bg-200 dark:text-white">

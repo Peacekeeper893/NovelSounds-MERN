@@ -17,6 +17,7 @@ const Home = ({ loggedIn }) => {
     const [hgbooks, setHgbooks] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Initialize loading state to true
     const [searchmodal, setSearchmodal] = useState(false);
+    const [lotrbooks, setLotrbooks] = useState([]); // Initialize loading state to true
     const [query, setQuery] = useState("");
 
     useEffect(() => {
@@ -24,6 +25,7 @@ const Home = ({ loggedIn }) => {
         GetHpbooks();
         GetHgbooks();
         GetAsoifbooks();
+        GetLotrbooks();
     }, []);
 
     const GetBooks = () => {
@@ -59,6 +61,16 @@ const Home = ({ loggedIn }) => {
             .then((res) => res.json())
             .then((data) => {
                 setAsoifbooks(data);
+                setIsLoading(false);
+            })
+            .catch((err) => console.error(err));
+    };
+
+    const GetLotrbooks = () => {
+        fetch(API_BASE + "/books/lotr")
+            .then((res) => res.json())
+            .then((data) => {
+                setLotrbooks(data);
                 setIsLoading(false);
             })
             .catch((err) => console.error(err));
@@ -108,7 +120,7 @@ const Home = ({ loggedIn }) => {
                         Harry Potter Books
                     </div>
 
-                    <div className="flex flex-wrap gap-8 p-4">
+                    <div className="flex flex-wrap gap-2 p-4">
                         {isLoading === true ? (
                             Array.from({ length: 5 }).map((_, index) => (
                                 <div
@@ -153,7 +165,7 @@ const Home = ({ loggedIn }) => {
 
                     <div className="font-semibold text-xl">Recent Posts</div>
                     <hr className="border-gray-500 " />
-                    <div className=" mt-6 max-h-fit flex-col grid gap-6">
+                    <div className=" mt-6 max-h-fit flex-col grid gap-4">
                         {books.map((book) => (
                             <Link to={`book/${book["name"]}`}>
                                 <ShortcutDisplay book={book} />
@@ -171,7 +183,7 @@ const Home = ({ loggedIn }) => {
                     A song of Ice and Fire Books
                 </div>
 
-                <div className="flex flex-wrap md:gap-16 gap-8 p-4">
+                <div className="flex flex-wrap md:gap-26 gap-2 p-4">
                     {isLoading === true ? (
                         Array.from({ length: 5 }).map((_, index) => (
                             <div
@@ -205,7 +217,7 @@ const Home = ({ loggedIn }) => {
                     Hunger Games Books
                 </div>
 
-                <div className="flex flex-wrap md:gap-16 p-4 gap-8">
+                <div className="flex flex-wrap md:gap-26 p-4 gap-2">
                     {isLoading === true ? (
                         Array.from({ length: 5 }).map((_, index) => (
                             <div
@@ -218,6 +230,41 @@ const Home = ({ loggedIn }) => {
                     ) : (
                         <Fragment>
                             {hgbooks.map((book) => (
+                                <Link to={`book/${book["name"]}`}>
+                                    <BookDisplay
+                                        name={book["name"]}
+                                        author={book["author"]}
+                                        bookimg={book["bookimg"]}
+                                    />
+                                </Link>
+                            ))}
+                        </Fragment>
+                    )}
+                </div>
+            </div>
+
+
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
+                <div
+                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
+                    id="hunger-games"
+                >
+                    Lord of the Rings books
+                </div>
+
+                <div className="flex flex-wrap md:gap-26 p-4 gap-2">
+                    {isLoading === true ? (
+                        Array.from({ length: 5 }).map((_, index) => (
+                            <div
+                                key={index}
+                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
+                            >
+                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
+                            </div>
+                        ))
+                    ) : (
+                        <Fragment>
+                            {lotrbooks.map((book) => (
                                 <Link to={`book/${book["name"]}`}>
                                     <BookDisplay
                                         name={book["name"]}

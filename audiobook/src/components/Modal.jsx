@@ -6,10 +6,9 @@ import { SectionWrapper } from "../hoc";
 const Modal = ({ openModalHandler, closeModalHandler, book }) => {
     const containerStyle = {
         backgroundImage: `url(${book[0]["bookimg"]})`,
-
-        opacity: 0.75,
-        filter: "contrast(1.80) saturate(90%) brightness(40%)",
-    };
+        opacity: 0.9, // Increase the opacity to make the background darker
+        filter: "contrast(1.2) saturate(90%) brightness(25%)", // Decrease the brightness and adjust the contrast to make the text more visible
+      };
     const mainstyle = {
         opacity: 1,
         filter: "contrast(1.0) saturate(100%) brightness(100%)",
@@ -50,7 +49,7 @@ const Modal = ({ openModalHandler, closeModalHandler, book }) => {
                 variants={variants}
                 transition={transition}
                 
-                className="block md:h-[60%]  absolute md:bottom-20 h-[50%] bottom-[30vh] left-[20%] right-[20%] w-[60%] md:w-[20%] md:left-[4%]"
+                className="block lg:h-[60%] md:bottom-[40vh] md:w-[40%] md:left-[30%] absolute lg:bottom-20 h-[50%] bottom-[30vh] left-[20%] right-[20%] w-[60%] lg:w-[20%] lg:left-[4%]"
             >
                 <img
                     src={book[0]["bookimg"]}
