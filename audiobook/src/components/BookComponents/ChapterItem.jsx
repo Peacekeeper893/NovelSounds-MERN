@@ -91,6 +91,7 @@ const ChapterItem = ({
                 }
                 transition={{ duration: 0.5 }}
                 className="hidden md:block p-3 pl-6 bg-neutral-100 m-3 dark:bg-d-bg-300 dark:text-white rounded-md"
+                id={num}
             >
                 <div className="flex gap-4">
                     <div className="flex">

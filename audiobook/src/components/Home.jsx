@@ -7,6 +7,7 @@ import ShortcutDisplay from "./ShortcutDisplay";
 import SearchModal from "./SearchModal";
 import { IoSearch } from "react-icons/io5";
 import LoadingScreen from "./LoadingScreen";
+import Carousel from "./Carousel";
 
 const API_BASE = "https://audioapi-euhq.vercel.app";
 
@@ -89,10 +90,12 @@ const Home = ({ loggedIn }) => {
             <Navbar loggedIn={loggedIn} />
             {/* Search bar for mobile displays */}
 
+            <div className="dark:bg-d-bg-100 dark:text-white mt-8 flex justify-center pl-2 bg-stone-200 py-8"> <Carousel books={hpbooks } /></div>
+
             <div className=" md:hidden text-black  dark:text-d-primary-400 bg-zinc-50 dark:bg-d-bg-100 pt-5 pb-3 px-5">
                 <div className="flex w-full">
                     <input
-                        type="search"
+                        type="text"
                         name="searchq"
                         id="searchq"
                         placeholder={`Search an Audiobook... `}
@@ -103,6 +106,11 @@ const Home = ({ loggedIn }) => {
                         onChange={(e) => {
                             setQuery(() => e.target.value);
                         }}
+                        autoComplete="off"
+
+                        // turn off predictive search
+
+
                     />
                     <div className="p-2 pt-3 border-gray-300 border-[4px] border-l-0 dark:bg-d-bg-200 rounded-xl rounded-l-none -ml-0.5">
                         <IoSearch />
@@ -120,7 +128,7 @@ const Home = ({ loggedIn }) => {
                         Harry Potter Books
                     </div>
 
-                    <div className="flex flex-wrap gap-2 p-4">
+                    <div className="flex flex-wrap gap-10 md:gap-2 p-4">
                         {isLoading === true ? (
                             Array.from({ length: 5 }).map((_, index) => (
                                 <div
@@ -165,13 +173,50 @@ const Home = ({ loggedIn }) => {
 
                     <div className="font-semibold text-xl">Recent Posts</div>
                     <hr className="border-gray-500 " />
-                    <div className=" mt-6 max-h-fit flex-col grid gap-4">
+                    <div className=" mt-6 max-h-fit flex-col grid gap-10 md:gap-4">
                         {books.map((book) => (
                             <Link to={`book/${book["name"]}`}>
                                 <ShortcutDisplay book={book} />
                             </Link>
                         ))}
                     </div>
+                </div>
+            </div>
+
+
+            
+
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
+                <div
+                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
+                    id="hunger-games"
+                >
+                    Lord of the Rings books
+                </div>
+
+                <div className="flex flex-wrap md gap-10:md:gap-26 p-4 gap-10 md:gap-2">
+                    {isLoading === true ? (
+                        Array.from({ length: 5 }).map((_, index) => (
+                            <div
+                                key={index}
+                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
+                            >
+                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
+                            </div>
+                        ))
+                    ) : (
+                        <Fragment>
+                            {lotrbooks.map((book) => (
+                                <Link to={`book/${book["name"]}`}>
+                                    <BookDisplay
+                                        name={book["name"]}
+                                        author={book["author"]}
+                                        bookimg={book["bookimg"]}
+                                    />
+                                </Link>
+                            ))}
+                        </Fragment>
+                    )}
                 </div>
             </div>
 
@@ -183,7 +228,7 @@ const Home = ({ loggedIn }) => {
                     A song of Ice and Fire Books
                 </div>
 
-                <div className="flex flex-wrap md:gap-26 gap-2 p-4">
+                <div className="flex flex-wrap md gap-10:md:gap-26 gap-10 md:gap-2 p-4">
                     {isLoading === true ? (
                         Array.from({ length: 5 }).map((_, index) => (
                             <div
@@ -217,7 +262,7 @@ const Home = ({ loggedIn }) => {
                     Hunger Games Books
                 </div>
 
-                <div className="flex flex-wrap md:gap-26 p-4 gap-2">
+                <div className="flex flex-wrap md gap-10:md:gap-26 p-4 gap-10 md:gap-2">
                     {isLoading === true ? (
                         Array.from({ length: 5 }).map((_, index) => (
                             <div
@@ -243,40 +288,6 @@ const Home = ({ loggedIn }) => {
                 </div>
             </div>
 
-
-            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
-                <div
-                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
-                    id="hunger-games"
-                >
-                    Lord of the Rings books
-                </div>
-
-                <div className="flex flex-wrap md:gap-26 p-4 gap-2">
-                    {isLoading === true ? (
-                        Array.from({ length: 5 }).map((_, index) => (
-                            <div
-                                key={index}
-                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
-                            >
-                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
-                            </div>
-                        ))
-                    ) : (
-                        <Fragment>
-                            {lotrbooks.map((book) => (
-                                <Link to={`book/${book["name"]}`}>
-                                    <BookDisplay
-                                        name={book["name"]}
-                                        author={book["author"]}
-                                        bookimg={book["bookimg"]}
-                                    />
-                                </Link>
-                            ))}
-                        </Fragment>
-                    )}
-                </div>
-            </div>
 
             <Footer />
         </Fragment>

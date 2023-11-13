@@ -13,6 +13,8 @@ import { getAuth } from "firebase/auth";
 
 import { IoLogOutOutline, IoLogOutSharp } from "react-icons/io5";
 
+import {CgProfile} from "react-icons/cg"
+
 const Navbar = ({ loggedIn }) => {
     const [browse, setBrowse] = useState(false);
 

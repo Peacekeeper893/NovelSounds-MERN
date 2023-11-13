@@ -7,6 +7,7 @@ const ChapterList = ({ sendData , chapters , chapter_number ,chapterdetails}) =>
         <div className="dark:bg-d-bg-200 py-4">
             {chapters.map((chapter) => (
                 <ChapterItem
+                    key={chapter.chapter_number}
                     num={chapter.chapter_number}
                     title={chapter.chapter_title}
                     description={chapter.description}

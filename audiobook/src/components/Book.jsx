@@ -20,6 +20,9 @@ const Book = ({ loggedIn }) => {
     const [isLoading, setIsLoading] = useState(true); // Initialize loading state to true
     const [openModal, setOpenModal] = useState(false);
     const [user, setUser] = useState({})
+    const [similar, setSimilar] = useState([]);
+
+
 
     const openModalHandler = () => {
         setOpenModal((prev) => !prev);
@@ -35,7 +38,8 @@ const Book = ({ loggedIn }) => {
                 setbook(data);
                 setIsLoading(false);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => console.error(err))
+
     };
 
     useEffect(() => {
@@ -48,6 +52,8 @@ const Book = ({ loggedIn }) => {
         }, 1000);
 
         GetBook();
+        
+
     }, []);
 
     const sendData = (data) => {
@@ -75,7 +81,7 @@ const Book = ({ loggedIn }) => {
                 <div className="min-h-screen dark:bg-d-bg-200 dark:text-white">
                     <Navbar loggedIn={loggedIn} />
 
-                    <Hero book={book} user={user} />
+                    <Hero book={book} user={user} sendData={sendData} />
 
                     {!loggedIn ? (
                         <div className="text-center py-16 h-full dark:bg-d-bg-200 dark:text-white">
