@@ -62,17 +62,21 @@ const Controls = ({
 
         const handlePaused = () => {
             setIsPlaying((prev) => false);
+            console.log("Paused");
         };
         const handlePlay = () => {
             setIsPlaying((prev) => true);
         };
+
+        // const handleEnded = () => {
+        //     console.log("Ended");
+        // };
 
         // Add event listeners to the audio element
         audioElement.addEventListener("error", handleError);
         audioElement.addEventListener("stalled", handleStalled);
         audioElement.addEventListener("pause", handlePaused);
         audioElement.addEventListener("play", handlePlay);
-        audioElement.addEventListener("ended", handleEnded);
         
 
         // Remove event listeners when the component unmounts
@@ -81,9 +85,10 @@ const Controls = ({
             audioElement.removeEventListener("stalled", handleStalled);
             audioElement.removeEventListener("pause", handlePaused);
             audioElement.removeEventListener("play", handlePlay);
-            audioElement.removeEventListener("ended", handleEnded);
         };
     }, []);
+
+
 
 
     const togglePlayPause = () => {
@@ -132,8 +137,10 @@ const Controls = ({
         };
     }, [togglePlayPause]);
 
+
+    let currentTime;
+
     const repeat = useCallback(() => {
-        let currentTime;
 
         try {
             currentTime = audioRef.current.currentTime;
@@ -147,6 +154,7 @@ const Controls = ({
             playAnimationRef.current = requestAnimationFrame(repeat);
         } catch (error) {
             console.log("Error");
+            localStorage.setItem(`${book[0].name}-${chapter_number}`, currentTime.toString());
         }
     }, [audioRef, duration, progressBarRef, setTimeProgress]);
 
@@ -168,10 +176,6 @@ const Controls = ({
 
 
 
-    const handleEnded = () => {
-        // setTimeout(() => {   }, 2000);
-        // handlenext();
-    };
 
     navigator.mediaSession.setActionHandler("previoustrack", function () {
         handleprev();
