@@ -14,6 +14,7 @@ const API_BASE = "https://audioapi-euhq.vercel.app";
 const Home = ({ loggedIn }) => {
     const [books, setBooks] = useState([]);
     const [hpbooks, setHpbooks] = useState([]);
+    const [otherbooks, setOtherbooks] = useState([]); // Initialize loading state to true
     const [asoifbooks, setAsoifbooks] = useState([]);
     const [hgbooks, setHgbooks] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Initialize loading state to true
@@ -27,6 +28,7 @@ const Home = ({ loggedIn }) => {
         GetHgbooks();
         GetAsoifbooks();
         GetLotrbooks();
+        GetOtherBooks();
     }, []);
 
     const GetBooks = () => {
@@ -72,6 +74,16 @@ const Home = ({ loggedIn }) => {
             .then((res) => res.json())
             .then((data) => {
                 setLotrbooks(data);
+                setIsLoading(false);
+            })
+            .catch((err) => console.error(err));
+    };
+
+    const GetOtherBooks = () => {
+        fetch(API_BASE + "/books/others")
+            .then((res) => res.json())
+            .then((data) => {
+                setOtherbooks(data);
                 setIsLoading(false);
             })
             .catch((err) => console.error(err));
@@ -276,6 +288,42 @@ const Home = ({ loggedIn }) => {
                     ) : (
                         <Fragment>
                             {hgbooks.map((book) => (
+                                <Link to={`book/${book["name"]}`}>
+                                    <BookDisplay
+                                        name={book["name"]}
+                                        author={book["author"]}
+                                        bookimg={book["bookimg"]}
+                                    />
+                                </Link>
+                            ))}
+                        </Fragment>
+                    )}
+                </div>
+            </div>
+
+
+
+            <div className=" bg-zinc-50 dark:bg-d-bg-100 dark:text-white  w-screen max-w-full md:p-8 p-2">
+                <div
+                    className=" text-4xl font-semibold pointer-events-none p-4 dark:text-d-bg-600"
+                    id="hunger-games"
+                >
+                    Other Titles
+                </div>
+
+                <div className="flex flex-wrap md gap-10:md:gap-26 p-4 gap-4 md:gap-2">
+                    {isLoading === true ? (
+                        Array.from({ length: 5 }).map((_, index) => (
+                            <div
+                                key={index}
+                                className="lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] "
+                            >
+                                <div className="h-[75%]  bg-gray-200 dark:bg-d-bg-200 rounded-xl"></div>
+                            </div>
+                        ))
+                    ) : (
+                        <Fragment>
+                            {otherbooks.map((book) => (
                                 <Link to={`book/${book["name"]}`}>
                                     <BookDisplay
                                         name={book["name"]}
