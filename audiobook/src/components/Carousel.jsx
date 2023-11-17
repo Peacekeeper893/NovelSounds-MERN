@@ -33,6 +33,11 @@ const images = [
         name: "The Lord of the Rings",
         link: "book/The%20Lord%20of%20the%20Rings%20-%20Fellowship%20of%20the%20Ring",
     },
+    {
+        url: "https://streamcoimg-a.akamaihd.net/000/568/85/56885-Banner-L1-bd85dee1726fca0e75713ba0e84a75a1.jpg?resize=1440px:*&quality=85",
+        name: "Normal People",
+        link: "book/Normal%20People",
+    }
 ];
 
 const Carousel = ({ books }) => {
