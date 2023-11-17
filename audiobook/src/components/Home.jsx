@@ -90,7 +90,6 @@ const Home = ({ loggedIn }) => {
             <Navbar loggedIn={loggedIn} />
             {/* Search bar for mobile displays */}
 
-            <div className="dark:bg-d-bg-100 dark:text-white mt-8 flex justify-center pl-2 bg-stone-200 py-8"> <Carousel books={hpbooks } /></div>
 
             <div className=" md:hidden text-black  dark:text-d-primary-400 bg-zinc-50 dark:bg-d-bg-100 pt-5 pb-3 px-5">
                 <div className="flex w-full">
@@ -119,6 +118,8 @@ const Home = ({ loggedIn }) => {
                 {searchmodal && <SearchModal query={query} />}
             </div>
 
+            <div className="dark:bg-d-bg-100 dark:text-white md:mt-8 mt-3 flex justify-center pl-2 bg-stone-100 py-8 "> <Carousel books={hpbooks} /></div>
+            
             <div className="min-h-screen bg-zinc-50 dark:bg-d-bg-100 dark:text-white flex w-screen max-w-full md:p-8 p-2">
                 <div className=" md:flex-[75]  ">
                     <div
@@ -128,7 +129,7 @@ const Home = ({ loggedIn }) => {
                         Harry Potter Books
                     </div>
 
-                    <div className="flex flex-wrap gap-10 md:gap-2 p-4">
+                    <div className="flex flex-wrap gap-y-8 gap-x-5 md:gap-2 p-4">
                         {isLoading === true ? (
                             Array.from({ length: 5 }).map((_, index) => (
                                 <div
@@ -194,7 +195,7 @@ const Home = ({ loggedIn }) => {
                     Lord of the Rings books
                 </div>
 
-                <div className="flex flex-wrap md gap-10:md:gap-26 p-4 gap-10 md:gap-2">
+                <div className="flex flex-wrap  md:gap-26 p-4 gap-4 md:gap-2">
                     {isLoading === true ? (
                         Array.from({ length: 5 }).map((_, index) => (
                             <div
@@ -228,7 +229,7 @@ const Home = ({ loggedIn }) => {
                     A song of Ice and Fire Books
                 </div>
 
-                <div className="flex flex-wrap md gap-10:md:gap-26 gap-10 md:gap-2 p-4">
+                <div className="flex flex-wrap md:gap-26 gap-4 md:gap-2 p-4">
                     {isLoading === true ? (
                         Array.from({ length: 5 }).map((_, index) => (
                             <div
@@ -262,7 +263,7 @@ const Home = ({ loggedIn }) => {
                     Hunger Games Books
                 </div>
 
-                <div className="flex flex-wrap md gap-10:md:gap-26 p-4 gap-10 md:gap-2">
+                <div className="flex flex-wrap md gap-10:md:gap-26 p-4 gap-4 md:gap-2">
                     {isLoading === true ? (
                         Array.from({ length: 5 }).map((_, index) => (
                             <div

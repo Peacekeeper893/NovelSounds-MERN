@@ -27,7 +27,7 @@ const ProgressBar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
         return "00:00";
     };
     return (
-        <div className="pb-1">
+        <div className="pb-4 md:pb-2">
             <input
                 type="range"
                 ref={progressBarRef}

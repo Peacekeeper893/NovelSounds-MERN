@@ -26,12 +26,12 @@ const BookDisplay = ({ name, author, bookimg }) => {
                 </div>
             </motion.div>
 
-            <div className="md:hidden lg:h-[533px] lg:w-[250px] w-[140px] h-[315px] md:h[425] md:w-[200] my-3">
+            <div className="md:hidden lg:h-[533px] lg:w-[250px] w-[160px] h-[315px] md:h[425] md:w-[200] my-3">
                 <div className="h-[75%] mb-2">
                     <img
                         src={bookimg}
                         alt="img"
-                        className="object-fit h-[240px] w-[140px] lg:h-[400px] lg:w-[250px] md:h[375] md:w-[200]"
+                        className="object-fit h-[240px] w-[160px] lg:h-[400px] lg:w-[250px] md:h[375] md:w-[200]"
                     />
                 </div>
                 <div className="h-[25%] ">

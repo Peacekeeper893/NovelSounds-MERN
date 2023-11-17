@@ -6,7 +6,9 @@ const DisplayTrack = ({
   setDuration,
   progressBarRef,
   book,
-  chapter_number
+  chapter_number,
+  isPlaying,
+  setIsPlaying,
 }) => {
 
 

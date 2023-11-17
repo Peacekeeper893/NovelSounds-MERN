@@ -73,7 +73,7 @@ const Navbar = ({ loggedIn }) => {
             <div className="bg-slate-900 w-full text-white flex justify-between gap-6 py-2 dark:bg-d-bg-400">
 
 
-                <div className="ml-12 flex justify-start gap-4">
+                <div className="md:ml-12 ml-6 flex justify-start gap-4">
                     <span className="hover:underline">
                         <Link to={"/"}>Home</Link>
                     </span>

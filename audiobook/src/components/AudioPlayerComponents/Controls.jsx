@@ -26,8 +26,10 @@ const Controls = ({
     chapter_number,
     book,
     openModal,
+    isPlaying,
+    setIsPlaying
 }) => {
-    const [isPlaying, setIsPlaying] = useState(true);
+    // const [isPlaying, setIsPlaying] = useState(true);
     const [volumeval, setVolume] = useState(60);
     const [errorOccurred, setErrorOccurred] = useState(false);
     const [muteVolume, setMuteVolume] = useState(false);
@@ -61,7 +63,7 @@ const Controls = ({
         };
 
         const handlePaused = () => {
-            setIsPlaying((prev) => false);
+            setIsPlaying(false);
             console.log("Paused");
         };
         const handlePlay = () => {
@@ -169,6 +171,7 @@ const Controls = ({
             });
         } else {
             audioRef.current.pause();
+            console.log("check")
         }
         playAnimationRef.current = requestAnimationFrame(repeat);
     }, [isPlaying, audioRef, repeat]);
@@ -191,11 +194,11 @@ const Controls = ({
 
     return (
         <div className="controls-wrapper">
-            <div className={`controls md:flex justify-between px-6 ${openModal && "text-3xl"}`}>
+            <div className={`controls md:flex justify-between px-6 ${openModal && "text-3xl md:pb-2 pb-12"}`}>
                 <div className="md:flex-[15%] hidden md:flex  self-center">
 
                     <select
-                        className={`bg-transparent text-black  block ${openModal ? "md:hidden" : "md:block"} dark:placeholder-opacity-50 dark:ring-1 dark:ring-black ring-1 ring-gray-800 font-semibold font-sans rounded-lg pl-2  w-[42%] md:ml-8`}
+                        className={`bg-transparent text-black  block ${openModal ? "md:hidden" : "md:block"} dark:placeholder-opacity-50 dark:ring-1 dark:ring-black ring-1 ring-gray-800 font-semibold font-sans rounded-lg pl-2  w-[42%] md:ml-8 mb-1`}
                         onChange={(e) => {
                             audioRef.current.playbackRate = e.target.value;
                         }}
@@ -214,24 +217,24 @@ const Controls = ({
    
                 </div>
 
-                <div className="md:flex-[70%] self-center text-center pl-2">
-                    <button className="px-2" onClick={handleprev}>
+                <div className="md:flex-[70%] self-center text-center pl-2 gap-10">
+                    <button className={`px-2 ${openModal && "text-gray-1f00"}`} onClick={handleprev}>
                         <IoPlaySkipBackSharp />
                     </button>
-                    <button className="px-2" onClick={handleback10}>
+                    <button className={`px-2 ${openModal && "text-gray-400"}`} onClick={handleback10}>
                     <TbRewindBackward10/>
                     </button>
 
                     <button onClick={togglePlayPause} className="px-2">
                         {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
                     </button>
-                    <button className="px-2 " onClick={handleforward10}>
+                    <button className={`px-2 ${openModal && "text-gray-400"}`} onClick={handleforward10}>
                         
                     
                     <TbRewindForward10/>
                         
                     </button>
-                    <button className="px-2" onClick={handlenext}>
+                    <button className={`px-2 ${openModal && "text-gray-100"}`} onClick={handlenext}>
                         <IoPlaySkipForwardSharp />
                     </button>
                 </div>
@@ -265,9 +268,9 @@ const Controls = ({
                         />
                     </div>
 
-                    <div className="md:self-center pl-3 absolute left-0 bottom-[56px] md:hidden ">
+                    <div className="md:self-center pl-3 absolute left-0 bottom-[67px] md:hidden ">
                     <select
-                        className={`bg-transparent text-black text-md block ${openModal ? "md:hidden" : "md:block"}   font-sans rounded-lg  py-1 w-[80%] bottom-5  ${openModal ? "text-xl " : "text-sm"}   `}
+                        className={`bg-transparent  text-md block ${openModal ? "md:hidden text-white" : "md:block"}   font-sans rounded-lg  py-1 w-[80%] bottom-5  ${openModal ? "text-2xl mb-7" : "text-sm"}   `}
                         onChange={(e) => {
                             audioRef.current.playbackRate = e.target.value;
                         }}

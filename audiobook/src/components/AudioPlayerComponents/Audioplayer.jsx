@@ -9,6 +9,8 @@ import ProgressBar from "./ProgressBar";
 const Audioplayer = ({ currentTrack ,openModalHandler ,sendData ,chapter_number,book,openModal }) => {
     const audioRef = useRef();
     const progressBarRef = useRef();
+    const [isPlaying, setIsPlaying] = useState(true);
+
 
     const [open, setOpen] = useState(false);
     const [storedTime, setStoredTime] = useState(null);
@@ -81,7 +83,9 @@ const handleClose = (shouldContinue) => {
                 setDuration={setDuration}
                 progressBarRef={progressBarRef}
                 book={book}
-                chapter_number = {chapter_number}
+                chapter_number={chapter_number}
+                isPlaying={isPlaying}
+                setIsPlaying={setIsPlaying}
             />
             <Controls
                 {...{
@@ -93,7 +97,9 @@ const handleClose = (shouldContinue) => {
                     sendData,
                     chapter_number,
                     book,
-                    openModal
+                    openModal,
+                    isPlaying,
+                    setIsPlaying,
                 }}
             />
             <ProgressBar
